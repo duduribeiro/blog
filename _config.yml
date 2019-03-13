@@ -1,0 +1,50 @@
+# Site Info
+title:              "Coding with Coffee"
+description:        "My code thoughts"
+author_name:        "Carlos Ribeiro"
+logo_url:           https://avatars3.githubusercontent.com/u/771411?v=4
+
+author:
+  email: "mail@cadu.dev"
+  url: "https://cadu.dev"
+  github: "https://github.com/duduribeiro"
+  linkedin: "https://br.linkedin.com/in/carloseduribeiro"
+  twitter: "https://twitter.com/duduribeiro"
+
+# Site Settings
+url:                https://cadu.dev # main url
+baseurl:            # /
+permalink:          /:title # Post permalink
+timezone:           America/Sao_Paulo # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+mathjax:            true  # enables support for mathjax - set to 'false' to disable
+
+# Site Build
+highlighter:        rouge
+markdown:           kramdown
+kramdown:
+    input:          GFM
+sass:
+    style:          :compressed
+
+# Other Params
+include:            [ "robots.txt" ]
+exclude:            [ "LICENSE", "README.md", "CNAME", "vendor", "Gemfile", "script" ]
+plugins:
+  - jekyll-sitemap
+
+defaults:
+  -
+    scope:
+      path:         ""
+    values:
+      layout:       "null"
+  -
+    scope:
+      type:         "pages"
+    values:
+      layout:       "page"
+  -
+    scope:
+      type:         "posts"
+    values:
+      layout:       "post"
