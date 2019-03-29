@@ -1,8 +1,16 @@
 ---
+title: "Accepting Emojis on a Rails app with MySQL"
 layout: post
-title:  "Accepting Emojis on a Rails app with MySQL"
-date:   2016-03-7 11:07:16 -0300
-categories: rails
+date: 2016-03-7 11:07:16 -0300
+image: /assets/images/markdown.jpg
+headerImage: false
+tag:
+- rails
+- mysql
+category: blog
+author: dudribeiro
+description: Markdown summary with different options
+hidden: false
 ---
 In the past weeks at work, we faced a problem in our application. A user tried to express himself with an emoji in the description field. We were not expecting it then you can imagine what happened. 💥 in production 😱.
 

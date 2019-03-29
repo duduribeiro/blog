@@ -1,8 +1,17 @@
 ---
+title: "Connecting on RDS Server that is not publicly accessible"
 layout: post
-title:  "Connecting on RDS Server that is not publicly accessible"
-date:   2017-01-10 12:00:00 -0300
-categories: aws rds vpc
+date: 2017-01-10 12:00:00 -0300
+image: /assets/images/private_rds.png
+headerImage: false
+tag:
+- rds
+- aws
+- vpc
+category: blog
+author: dudribeiro
+description: "Let’s imagine the following scenario: You have web servers on a public subnet that you can connect and your RDS instance is hosted on a private subnet. This way, your database instance is not publicly accessible through the internet and you can’t connect your local client with it."
+hidden: false
 ---
 Let’s imagine the following scenario:
 

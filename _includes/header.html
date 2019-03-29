@@ -1,18 +1,24 @@
-<header class="header">
-	<aside class="logo">
+{% assign redirectUrl = "/" %}
+{% if page.title == "Blog" %}{% assign redirectUrl = "/about" %}{% endif %}
+{% assign showHeader = true %}
 
-		{% if page.url == '/index.html' or page.url == '/' %}
-			{% assign link = '/about' %}
-			{% assign prompt = 'About the author' %}
-		{% else %}
-			{% assign link = '/' %}
-			{% assign prompt = 'Back to Index' %}
-		{% endif %}
+{% if showHeader == true %}
+    <header class="header-home {% if site.animation %}animated{% endif %}">
+        {% if site.about %}
+            <a class="link" href="{{ site.url }}{{ redirectUrl }}">
+                <img class="selfie" alt="{{ site.name }}" src="{% if site.external-image %}{{ site.picture }}{% else %}{{ site.url }}/{{ site.picture }}{% endif %}" />
+            </a>
+        {% else %}
+            <span class="link">
+                <img class="selfie" alt="{{ site.name }}" src="{% if site.external-image %}{{ site.picture }}{% else %}{{ site.url }}/{{ site.picture }}{% endif %}" />
+            </span>
+        {% endif %}
 
-		<a href="{{ link | prepend: site.baseurl | prepend: site.url }}">
-			<img src="{{ site.logo_url }}" class="logo-avatar">
-		</a>
-		<span class="logo-prompt code">{{ prompt }}</span>
+        <h1 class="title">{{ site.name }}</h1>
+        <h2 class="description">{{ site.bio }}</h2>
 
-	</aside>
-</header>
+        {% include social-links.html %}
+    </header>
+{% endif %}
+
+{% include nav.html %}
