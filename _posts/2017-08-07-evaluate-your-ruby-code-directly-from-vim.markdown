@@ -18,7 +18,7 @@ When I am writing code, usually I want to evaluate some piece of code. I used to
 
 The first option needs an extra work of copying and pasting content. I prefer the second option, but sometimes I forgot to attach the VTR pane and get errors.
 
-Now I’m using [https://github.com/JoshCheek/seeing_is_believing] along with [https://github.com/t9md/vim-ruby-xmpfilter] plugin
+Now I’m using <https://github.com/JoshCheek/seeing_is_believing> along with <https://github.com/t9md/vim-ruby-xmpfilter> plugin
 
 I set my `.vimrc` with the following content (I use Plug to manage my dependencies):
 
