@@ -1,6 +1,10 @@
 source 'http://rubygems.org'
 
-gem 'github-pages'
+#gem 'github-pages'
 gem 'html-proofer'
 gem 'jekyll-admin'
+gem 'jekyll-feed'
+gem 'jekyll-gist'
+gem 'jekyll-seo-tag'
 gem 'jekyll-sitemap'
+gem 'jemoji'
