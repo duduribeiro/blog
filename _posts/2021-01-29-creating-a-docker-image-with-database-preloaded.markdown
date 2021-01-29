@@ -170,7 +170,7 @@ my_db=# SELECT * FROM clients;
 (2 rows)
 {% endhighlight %}
 
-Awesome. Our we have a docker image that has our database loaded into it. But if we check the log of this container
+Awesome. Now we have a docker image that has our database loaded into it. But if we check the log of this container
 
 {% highlight shell %}
 $ docker container logs test_preloaded_db
