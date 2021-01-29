@@ -135,7 +135,7 @@ If we want to start a Postgresql Docker container with this dump loaded to share
 > Initialization scripts
 > If you would like to do additional initialization in an image derived from this one, add one or more *.sql, *.sql.gz, or *.sh scripts under /docker-entrypoint-initdb.d (creating the directory if necessary). After the entrypoint calls initdb to create the default postgres user and database, it will run any *.sql files, run any executable *.sh scripts, and source any non-executable *.sh scripts found in that directory to do further initialization before starting the service.
 
-The following Dockerfile uses the *postgres:11-alpine* as base image and copies the *test_dump.sql* file to the entrypoint folder.
+The following Dockerfile uses *postgres:11-alpine* as base image and copies *test_dump.sql* file to the entrypoint folder.
 
 {% highlight docker %}
 FROM postgres:11-alpine
@@ -170,7 +170,7 @@ my_db=# SELECT * FROM clients;
 (2 rows)
 {% endhighlight %}
 
-Awesome. Now we have a docker image that has our database loaded into it. But if we check the log of this container
+Awesome. Now we have a docker image that has our database loaded. But if we check the log of this container
 
 {% highlight shell %}
 $ docker container logs test_preloaded_db
@@ -200,7 +200,7 @@ ALTER DATABASE
 {% endhighlight %}
 
 
-This tell us that the dump is being processed every time when we create the container. If we destroy this container and create a new one, the dump will be processed again. This works fine but if we have a big database with a big dump file, the startup process of the container will be slow because it can take some time to process the whole dump. We can fix it by keeping the database preloaded on the image.
+This tell us that the dump is being processed every time we create the container. If we destroy this container and create a new one, the dump will be processed again. This works fine but if we have a big database with a big dump file, the startup process of the container will be slow because it can take some time to process the whole dump. We can fix it by keeping the database preloaded in the image.
 
 Before we moving on, let's destroy the container we created
 
@@ -210,9 +210,9 @@ $ docker container rm -f test_preloaded_db
 
 <div class="breaker"></div>
 
-## Preloading the database on the image
+## Preloading the database in the image
 
-To preload the database on the image, we need to tell our Dockerfile to execute the same `entrypoint` of the original PostgreSQL image so it can execute the dump in the build step. Let's use [Multi-Stage build](https://docs.docker.com/develop/develop-images/multistage-build) to divide our build in two steps. The first one will execute the `entrypoint` with the dump file and the second one will copy the data folder to the resulting image.
+To preload the database in the image, we need to tell our Dockerfile to execute the same `entrypoint` of the original PostgreSQL image so it can execute the dump in the build step. Let's use [Multi-Stage build](https://docs.docker.com/develop/develop-images/multistage-build) to divide our build in two steps. The first one will execute the `entrypoint` with the dump file and the second one will copy the data folder to the resulting image.
 
 {% highlight docker %}
 # dump build stage
@@ -238,7 +238,7 @@ In the first step, we have the following instructions:
 
 * **FROM postgres:11-alpine as dumper** We define the base image our step will use. `postgres` with the `11-alpine` tag in this case.
 * **COPY test_dump.sql /docker-entrypoint-initdb.d/** Copy the `test_dump.sql` file to the `/docker-entrypoint-initdb.d/` folder.
-* **RUN ["sed", "-i", "s/exec \"$@\"/echo \"skipping...\"/", "/usr/local/bin/docker-entrypoint.sh"]** We need to execute this `sed` command in order to remove the `exec "$@"` content that exists on the `docker-entrypoint.sh` file so it will not start the PostgreSQL daemon (we don't need it on this step).
+* **RUN ["sed", "-i", "s/exec \"$@\"/echo \"skipping...\"/", "/usr/local/bin/docker-entrypoint.sh"]** We need to execute this `sed` command in order to remove the `exec "$@"` content that exists in the `docker-entrypoint.sh` file so it will not start the PostgreSQL daemon (we don't need it on this step).
 * **ENV POSTGRES_USER=postgres; ENV POSTGRES_PASSWORD=postgres; ENV PGDATA=/data** Sets environment variables to define `user` and `password` and tell PostgreSQL to use `/data` as data folder, so we can copy it in the next step
 * **RUN ["/usr/local/bin/docker-entrypoint.sh", "postgres"]** Execute the entrypoint itself. It will execute the dump and load the data into `/data` folder. Since we executed the `sed` command to remove the `$@` content it will not run the PostgreSQL daemon
 
@@ -292,7 +292,7 @@ We can see that only the PostgreSQL startup is being done. No dump is being exec
 
 ## Creating a Makefile to make the process easier
 
-I like to create a Makefile to make easy the process of making a database dump and create an image. This Makefile will contain commands to create the dump the database, create an image ang tag it by date allowing me to have daily dumps on my registry to download.
+I like to create a Makefile to make easier the process of making a database dump and creating an image. This Makefile will contain commands to create the dump the database, create an image and tag it by date allowing me to have daily dumps on my registry to download.
 
 {% highlight Makefile %}
 default: all
@@ -341,7 +341,7 @@ And I can execute the following command to generate my image with a new dump
 $ make DB_ENDPOINT=127.0.0.1 DB_USER=postgres DB_PASSWORD=postgres DB_NAME=my_db TARGET_IMAGE=myapp-data DESTINATION_REPOSITORY=gcr.io/my_project
 {% endhighlight %}
 
-This command usually is integrated in a Cron job in some server to being executed daily. With this I can have on my image registry dumps from each day.
+This command usually is integrated in a Cron job in some server to be executed daily. With this I can have on my image registry dumps from each day.
 
 Another interesting thing to do is to add some SQL script to obfuscate users data. [This article can be helpful if you want to achive this](https://blog.taadeem.net/english/2018/10/29/Introducing-PostgreSQL-Anonymizer)
 
