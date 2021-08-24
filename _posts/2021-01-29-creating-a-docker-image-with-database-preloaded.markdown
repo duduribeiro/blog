@@ -247,7 +247,7 @@ The second step contains only this instruction:
 
 If we build this Dockerfile
 {% highlight shell %}
-$ docker image build . -t preloaded_db:new
+$ docker image build . -t preloaded_db:latest
 {% endhighlight %}
 
 We can see in the output the dump being processed and after everything is finished, the image is built.
