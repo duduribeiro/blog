@@ -18,7 +18,7 @@ hidden: false
 One common problem in software development is setting up the project's development environment. Have you ever joined a project, opened the README.md, and found a README HELL, filled with endless instructions on how to configure the project? And halfway through the instructions, you encounter an error while running a command because you're not on the same operating system version as the person who wrote the README, or because the documentation is outdated.
 
 Quoting [Vladimir Dementyev](https://twitter.com/palkan_tula){:target="_blank"} in his amazing talk [Terraforming Legacy Rails applications:](https://speakerdeck.com/palkan/railsconf-2019-terraforming-legacy-rails-applications){:target="_blank"}
-> Developers should be able to run project with the least possible efort
+> Developers should be able to run project with the least possible effort
 
 for example, cloning the code and running a few scripts for server setup and start.
 
