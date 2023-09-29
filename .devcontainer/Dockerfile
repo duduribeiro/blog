@@ -15,7 +15,7 @@ RUN apt-get update && \
 # Install rbenv and ruby
 USER vscode
 
-ARG RUBY_VERSION="2.6.8"
+ARG RUBY_VERSION="2.4.5"
 RUN git clone https://github.com/rbenv/rbenv.git /home/vscode/.rbenv  \
     && echo '[ -f "/home/vscode/.rbenv/bin/rbenv" ] && eval "$(rbenv init - bash)" # rbenv' >> /home/vscode/.zshrc \
     && echo '[ -f "/home/vscode/.rbenv/bin/rbenv" ] && eval "$(rbenv init - bash)" # rbenv' >> /home/vscode/.bashrc \
