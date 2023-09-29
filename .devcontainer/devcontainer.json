@@ -1,0 +1,40 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/ruby-rails-postgres
+{
+    "name": "Blog DevContainer",
+    "build": {
+        "dockerfile": "Dockerfile",
+        "context": ".."
+    },
+    "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+    "features": {
+        "ghcr.io/devcontainers/features/node:1": {
+            "version": "9"
+        }
+    },
+    "remoteEnv": {
+        "GIT_EDITOR": "code --wait"
+    },
+    "onCreateCommand": ".devcontainer/onCreateCommand.sh",
+    "customizations": {
+        "vscode": {
+            // Set *default* container specific settings.json values on container create.
+            "extensions": [
+                "GitHub.github-vscode-theme",
+                "eamodio.gitlens",
+            ],
+            "rubyLsp.enableExperimentalFeatures": true
+        }
+    },
+    // Use 'forwardPorts' to make a list of ports inside the container available locally.
+    "forwardPorts": [
+        4000
+    ],
+    "portsAttributes": {
+        "4000": {
+            "label": "web",
+            "onAutoForward": "notify",
+            "requireLocalPort": true
+        }
+    }
+}
