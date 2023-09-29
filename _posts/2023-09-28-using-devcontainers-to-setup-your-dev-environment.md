@@ -597,6 +597,20 @@ Now that you have your development environment setup with DevContainers, you can
 
 Even this blog post was [written inside a DevContainer](https://github.com/duduribeiro/blog/commit/a0740c12fb9f95ce6a9aecea2e087911658e9384){:target="_blank"}. I needed to install Ruby 2.6.8 and some dependencies failed to intall on my machine. So I decided to run this on a DevContainer to have a easy way to run the project every time I want to write a new post. 
 
+<hr>
+
+References: 
+* https://docs.github.com/en/codespaces/setting-up-your-project-for-codespaces/adding-a-dev-container-configuration/introduction-to-dev-containers
+* https://speakerdeck.com/palkan/railsconf-2019-terraforming-legacy-rails-applications
+* https://github.blog/2015-06-30-scripts-to-rule-them-all/
+* https://github.blog/2021-08-11-githubs-engineering-team-moved-codespaces/
+* https://containers.dev/
+* https://code.visualstudio.com/docs/devcontainers/containers
+* https://12factor.net/dev-prod-parity
+* https://github.com/forem/forem/tree/main/.devcontainer
+* https://github.com/robzolkos/rails-devcontainer/
+* https://github.com/microsoft/vscode-dev-containers/issues/704
+
 <br>
 <br>
 
