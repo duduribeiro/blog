@@ -1,5 +1,5 @@
 # main text of home
-name: Carlos Ribeiro
+name: Cadu Ribeiro
 bio: Coffee addicted Software Engineer
 
 title: Coding with Coffee
@@ -57,7 +57,7 @@ author:
   picture: /assets/images/picture.jpeg
 authors:
     carlosribeiro:
-        name: Carlos Ribeiro
+        name: Cadu Ribeiro
         bio: Coffee addicted Software Engineer
         external-image: true
         picture: https://avatars3.githubusercontent.com/u/771411?v=4
