@@ -2,7 +2,7 @@
 title: "Running Neovim with Devcontainers"
 layout: post
 date: 2024-05-16 12:00:00 -0300
-image: /assets/images/neovimdevcontainers.png
+image: /assets/images/neovimdevcontainers.jpg
 headerImage: true
 tag:
 - docker
@@ -14,10 +14,10 @@ tag:
 category: blog
 author: dudribeiro
 description: "How can you use Neovim with DevContainers to simplify the development environment setup."
-hidden: true
+hidden: false
 ---
 
-In this post, I will show you how you can use Neovim with DevContainers to simplify the development environment setup. DevContainers is an open specificationthat allows containers to be used as a complete development environment with all tools necessary for the development lifecycle. To read more about DevContainers, check my previous post [here](https://cadu.dev/using-devcontainers-to-setup-your-dev-environment/){:target="_blank"} or the official documentation [here](https://containers.dev/){:target="_blank"}.
+In this post, I will show you how you can use Neovim with DevContainers to simplify the development environment setup. DevContainers is an open specificationthat that allows containers to be used as a complete development environment with all tools necessary for the development lifecycle. To read more about DevContainers, check my previous post [here](https://cadu.dev/using-devcontainers-to-setup-your-dev-environment/){:target="_blank"} or the official documentation [here](https://containers.dev/){:target="_blank"}.
 
 One thing that most people don't know is that DevContainers is not only for VSCode. It is a specification that can be used with any editor or IDE (although the integration with VSCode has the best support).
 
@@ -164,6 +164,8 @@ To copy the Neovim configuration from the host machine to the DevContainer, we c
 ```bash
 devcontainer up --mount "type=bind,source=$HOME/.config/nvim,target=/home/vscode/.config/nvim" --workspace-folder .
 ```
+
+DevContainers has a way to specify mount points on the .devcontainer/devcontainer.json file (see [the json reference](https://containers.dev/implementors/json_reference/){:target="_blank"} and look for mounts) but it didn't work for me, so I use the `--mount` flag in the `devcontainer up` command.
 
 This command will mount the `~/.config/nvim` folder from the host machine to the `/home/vscode/.config/nvim` folder in the DevContainer. Now we can run Neovim with our configuration:
 
